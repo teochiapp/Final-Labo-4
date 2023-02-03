@@ -14,5 +14,135 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 80px;
+    background-color: #908FC8;
+}
+
+p {    
+    color: #000;
+    font-family: 'Open Sans';
+}
+
+nav {
+    padding: 30px;
+    background-color: darkgreen;
+}
+
+navbar {
+    background-color: darkgreen;
+    color: aliceblue;
+    font-family: 'Comic Sans MS';
+    margin-bottom: 80px;    
+}
+
+nav-link loginText{
+   padding-left: 20px;
+   padding-bottom: 20px;
+   padding: 4px 7px 2px 4px;
+}
+
+header {
+    background-color: darkgreen;
+    color: aquamarine;
+}
+
+nav a {
+    color: darkgreen;
+    font-family: sans-serif;
+    color:chartreuse;
+}
+
+a.nav-link {
+    color: chartreuse;
+    padding: 8px 7px 2px 4px;
+}
+
+nav {
+    margin: 0 auto;
+    border: 1px solid #333333;
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url("../images/fondos/4ee6cb2a43905fbf6a25aa5a288c239f.jpg");
+}
+
+
+form input[type ="submit"],
+form input[type ="button"],
+button {
+    margin-top: 20px;
+    padding: 10px;
+    padding-top: 5px;
+    background-color: deepskyblue;
+    color: black;
+    border: 1px solid black;
+}
+
+a {
+    color: yellow;
+}
+
+img {
+    max-height: 100px;
+    max-width: 100px;
+    width: 150px;
+    height: 150px;
+    background-color: whitesmoke;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+footer {    
+    background-color: #232823;
+    border: 1px solid #333;
+    color: #d1d4d1;
+    text-align: center;
+    margin: 0 auto;
+    box-shadow: 0px 0px 20px gray;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.containerGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding-top: 20px;
+    text-align: center;    
+}
+
+article {
+    display: block;
+    border: 1px solid #333;
+    height: 380px;
+    width: 335px;
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), 
+        url("../images/fondos/4ee6cb2a43905fbf6a25aa5a288c239f.jpg");
+    padding-top: 10px;
+}
+
+.rounded-circle {
+    
 }

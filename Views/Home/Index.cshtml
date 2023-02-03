@@ -1,8 +1,28 @@
-﻿@{
+﻿@model WebApplicationLabo4.ModelsView.ClubesViewModel
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Clubes de fútbol</h1>
+<div class="containerGrid">  
+
+  
+    @foreach (var item in Model.Club)
+    {
+        <article>            
+        <h2>@Html.DisplayFor(modelItem => item.Nombre)</h2>
+        <p>@Html.DisplayFor(modelItem => item.Resumen)</p>
+        <p>Fundación: @Html.DisplayFor(modelItem => item.Inauguracion)</p>        
+        <p>@if (!string.IsNullOrEmpty(item.ImagenEscudo))
+        {
+            <img class="rounded-circle" src="~/images/clubes/@item.ImagenEscudo" style="max-width:200px; max-height:120px;" asp-append-version="true" />
+        }</p>
+        <p>País: @Html.DisplayFor(modelItem => item.Pais)</p>
+            <p>Categoría: <span class="link-hover" onclick="location.href='@Url.Action("Details", "Categorias", new { id = item.CategoriaId })'">@Html.DisplayFor(modelItem => item.Categoria.Descripcion)</span></p>
+            @*<a asp-action="Details" asp-route-id="@item.Id">Detalles</a>*@
+        </article>
+    }
 </div>
+

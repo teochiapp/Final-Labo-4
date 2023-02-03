@@ -1,34 +1,44 @@
-﻿@model IEnumerable<WebApplicationLabo4.Models.Jugadores>
+﻿@model WebApplicationLabo4.ModelsView.JugadoresViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jugadores";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <p>        
+        Apellido: <input type="text" name="busquedaApellido" value="@Model.Apellido" />
+        Nombres: <input type="text" name="busquedaNombres" value="@Model.Nombres" />
+
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Apellido)
+                @Html.DisplayNameFor(model => model.Jugador[0].Apellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nombres)
+                @Html.DisplayNameFor(model => model.Jugador[0].Nombres)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Biografia)
+                @Html.DisplayNameFor(model => model.Jugador[0].Biografia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Foto)
+                Fotografía
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Jugador) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Apellido)
@@ -39,8 +49,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Biografia)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Foto)
+                 @if (!string.IsNullOrEmpty(item.Foto)) { 
+                        <img src="~/images/jugadores/@item.Foto" class="img-thumbnail" class="rounded-circle" style="max-width:100px; max-height:100px;" asp-append-version="true" />
+                    }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -51,3 +64,5 @@
 }
     </tbody>
 </table>
+
+<partial name="_paginador" for="@Model.paginador">

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebApplicationLabo4.Models.JugadorClub>
+
+@{
+    ViewData["Title"] = "Clubes de Jugadores";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Jugador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jugador.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club.ImagenEscudo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>                
+                <td class="align-middle">                    
+                    <span class="link-hover" onclick="location.href='@Url.Action("Details", "Jugadores", new { id = item.idJugador })'">
+                        @Html.DisplayFor(modelItem => item.Jugador.Apellido)</span>
+                </td>
+                <td class="align-middle">
+                    @if (!string.IsNullOrEmpty(item.Jugador.Foto))
+                    {
+                        <img src="~/images/jugadores/@item.Jugador.Foto" class="img-thumbnail" style="max-width:150px; max-height:150px" asp-append-version="true" />
+                    }
+                </td>                
+                <td class="align-middle">                    
+                    <span class="link-hover" onclick="location.href='@Url.Action("Details", "Clubes", new { id = item.idClub })'">
+                        @Html.DisplayFor(modelItem => item.Club.Nombre)</span>
+                </td>
+                    <td class="align-middle">
+                    @if (!string.IsNullOrEmpty(item.Club.ImagenEscudo))
+                    {
+                         <img src="~/images/clubes/@item.Club.ImagenEscudo" class="rounded-circle" style="max-width:150px;" asp-append-version="true" />
+                    }
+                    </td>
+                    <td>
+                    
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@                
+                    
+                    <a asp-action="Details" asp-route-id="@item.idClub">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.idClub">Delete</a>
+            </td>
+                       
+
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-outline-dark" asp-controller="Clubes" asp-action="Index"><i class="bi bi-arrow-return-left"></i> Volver a la Lista de Clubes</a>

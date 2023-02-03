@@ -15,10 +15,19 @@ namespace WebApplicationLabo4.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);            
 
-            
+            modelBuilder.Entity<JugadorClub>().HasKey(am => new
+            {                
+                am.idClub,
+                am.idJugador
+            });
 
+            modelBuilder.Entity<JugadorClub>().HasOne(m => m.Club).WithMany(am => am.jugadorClub)
+                .HasForeignKey(m => m.idClub);
+
+            modelBuilder.Entity<JugadorClub>().HasOne(m => m.Jugador).WithMany(am => am.jugadorClub)
+                .HasForeignKey(m => m.idJugador);
         }
 
         public DbSet<Jugadores> Jugadores { get; set; }

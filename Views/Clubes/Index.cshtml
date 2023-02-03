@@ -1,0 +1,84 @@
+﻿@model WebApplicationLabo4.ModelsView.ClubesViewModel
+
+@{
+    ViewData["Title"] = "Clubes";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+
+<form asp-action="index" method="get">
+    <p>
+        Nombre: <input type="text" name="busquedaNombre" value="@Model.Nombre" />
+        Pais: <input type="text" name="busquedaPais" value="@Model.Pais" />
+        Categoría:
+        <select name="CategoriaId" asp-items="@Model.Categorias" name="busquedaCategoria">
+            <option value="">Todas</option>
+        </select>
+
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Resumen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Inauguracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].ImagenEscudo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club[0].Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Club) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resumen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inauguracion)
+            </td>
+            <td>
+                 @if (!string.IsNullOrEmpty(item.ImagenEscudo)) { 
+                        <img src="~/images/clubes/@item.ImagenEscudo" class="img-thumbnail" class="rounded-circle" style="max-width:100px; max-height:100px;" asp-append-version="true" />
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais)
+            </td>
+            <td>
+                    <span class="link-hover" onclick="location.href='@Url.Action("Details", "Categorias", new { id = item.CategoriaId })'">
+                        @Html.DisplayFor(modelItem => item.Categoria.Descripcion)</span>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>        
+}
+    </tbody>
+</table>
+
+<partial name="_paginador" for="@Model.paginador">
